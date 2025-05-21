@@ -76,6 +76,13 @@ begin
 	else
 	select @user = 'ramcouser'--surya
 
+	CREATE TABLE #TEMP_TAB1
+	(
+
+	OU int
+	CUST_CODE VARCHAR(20)
+	)--code added by surya
+
 	Drop table if exists #user_ou
 
 	Create Table #user_ou (ou int)
