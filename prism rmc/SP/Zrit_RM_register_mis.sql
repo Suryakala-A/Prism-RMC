@@ -73,6 +73,8 @@ begin
 	begin 
 		select @user = 'superuser' 
 	end
+	else
+	select @user = 'ramcouser'--surya
 
 	Drop table if exists #user_ou
 
