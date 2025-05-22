@@ -79,6 +79,15 @@ begin
 	select @user = 'ramcouser'
 	CREATE TABLE #bu
 	(bu varchar(20),ou int)
+	/*code added by narmadhadevi (git testing) starts*/
+	insert into #bu
+	Select distinct bu_id FROM SCMDB..Zrit_Map_Zone_Branch_Nature_dtl WITH (NOLOCK)
+	WHERE Bu_id	like @DIVISION
+	And	Company_code like @Company
+	AND Zone	LIKE	@ZONE
+	AND Branch	LIKE	@BRANCH	
+	AND	OU_id	LIKE	@Plant
+	/*code added by narmadhadevi (git testing) ends*/
 
 	/*	code added by suryakala (testing git) ENDS*/
 
