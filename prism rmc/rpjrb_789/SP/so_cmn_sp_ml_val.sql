@@ -1,3 +1,4 @@
+
 /*$File_version=MS4.3.0.68$*/
 /*********************************************************************************************
 file name		: 	so_cmn_sp_ml_val.sql
@@ -98,7 +99,7 @@ Modification details :
 	Vijay shree S			20/08/2024			 EPE-87218
 	 Nandhakumar B   17/12/2024   PJRMC-799
 *********************************************************************************************/
-create   procedure so_cmn_sp_ml_val
+create  or alter  procedure so_cmn_sp_ml_val
 	@check_price   				udd_checkbox  , 
 	@ctxt_language   			udd_ctxt_language  ,
 	@ctxt_ouinstance   			udd_ctxt_ouinstance  ,
@@ -200,6 +201,24 @@ BEGIN
 
 	select	@item_code_mul	=	convert(nvarchar(50),@item_code_mul)--CUIE-542 --nvarchar(50) for TIS-1515
 	
+	
+	/*	code added by suryakala (testing git)starts */
+	 create table #temp13
+	 (featureid varchar(20))
+	 insert into #temp13
+
+	  SELECT flag_yes_no
+	    FROM   pps_feature_list(NOLOCK)
+	    WHERE  feature_id = 'PPS_FID_0014'
+	    AND    component_name = 'NSO'
+	    
+	
+
+	/*	code added by suryakala (testing git)ends */
+
+
+
+
 	DECLARE @m_errorid_tmp         udd_int,	--ES_NSO_00211 - SP analyser exception
 	        @val_cus_item          udd_paramcode,
 	        @item_code_tmp     udd_itemcode,
@@ -3257,11 +3276,3 @@ BEGIN
 	/* Code modified by Raju against NSODms412at_000412 ends*/
 	SET NOCOUNT OFF --Code added for Defect ID ES_NSO_00211 - SP analyser exception
 END
-
-
-
-
-
-
-
-
