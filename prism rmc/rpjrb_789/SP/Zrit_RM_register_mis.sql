@@ -77,8 +77,6 @@ begin
 
 	else
 	select @user = 'ramcouser'
-	CREATE TABLE #bu
-	(bu varchar(20),ou int)
 
 	/*	code added by suryakala (testing git) ENDS*/
 
