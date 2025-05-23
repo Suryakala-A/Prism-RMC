@@ -73,15 +73,30 @@ begin
 	begin 
 		select @user = 'superuser' 
 	end
+		/*	code added by suryakala (testing git) STARTS*/
+
 	else
-	select @user = 'ramcouser'--surya
+	select @user = 'ramcouser'
+	CREATE TABLE #bu
+	(bu varchar(20),ou int)
+	/*code added by narmadhadevi (git testing) starts*/
+	insert into #bu
+	Select distinct bu_id FROM SCMDB..Zrit_Map_Zone_Branch_Nature_dtl WITH (NOLOCK)
+	WHERE Bu_id	like @DIVISION
+	And	Company_code like @Company
+	AND Zone	LIKE	@ZONE
+	AND Branch	LIKE	@BRANCH	
+	AND	OU_id	LIKE	@Plant
+	/*code added by narmadhadevi (git testing) ends*/
+
+	/*	code added by suryakala (testing git) ENDS*/
 
 	Drop table if exists #user_ou
 
-	Create Table #user_ou (ou int)
+	Create Table #user_ou (ou int,USERNAME VARCHAR(20))
 
 	Insert into #user_ou
-	Select	distinct OUInstId
+	Select	distinct OUInstId,UserName	/*	code added by suryakala (testing git) */
 	From	DEPDB..fw_admin_OUInst_User  with (nolock)
 	where	UserName	=	@user 
 	And		OUInstId IN (Select distinct OU_id FROM SCMDB..Zrit_Map_Zone_Branch_Nature_dtl WITH (NOLOCK)
@@ -2015,4 +2030,3 @@ where gr_dtcd_grno='SDMGRT23/0002634'
     
     
 end
-

@@ -73,22 +73,19 @@ begin
 	begin 
 		select @user = 'superuser' 
 	end
+		/*	code added by suryakala (testing git) STARTS*/
+
 	else
-	select @user = 'ramcouser'--surya
+	select @user = 'ramcouser'
 
-	CREATE TABLE #TEMP_TAB1
-	(
-
-	OU int
-	CUST_CODE VARCHAR(20)
-	)--code added by surya
+	/*	code added by suryakala (testing git) ENDS*/
 
 	Drop table if exists #user_ou
 
-	Create Table #user_ou (ou int)
+	Create Table #user_ou (ou int,USERNAME VARCHAR(20))
 
 	Insert into #user_ou
-	Select	distinct OUInstId
+	Select	distinct OUInstId,UserName	/*	code added by suryakala (testing git) */
 	From	DEPDB..fw_admin_OUInst_User  with (nolock)
 	where	UserName	=	@user 
 	And		OUInstId IN (Select distinct OU_id FROM SCMDB..Zrit_Map_Zone_Branch_Nature_dtl WITH (NOLOCK)
@@ -2022,4 +2019,3 @@ where gr_dtcd_grno='SDMGRT23/0002634'
     
     
 end
-
